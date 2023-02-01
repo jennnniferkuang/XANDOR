@@ -1,0 +1,176 @@
+body {
+    position: initial;
+    overflow-x: hidden;
+}
+
+#deck-editor {
+    margin: 0 5%;
+}
+
+.button {
+    margin: 5px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(128, 128, 128);
+    /* box-shadow: 0px 0px 5px rgb(128, 128, 128); */
+    min-width: 100px;
+    font-size: 13.3333px;
+}
+
+.button:hover {
+    border-color: rgb(142, 178, 194);
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: rgb(200, 219, 243);
+    border-color: rgb(142, 178, 194);
+    cursor: pointer;
+}
+
+#stack-carousel {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 10px;
+
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.stack {
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+    
+    text-align: center;
+    text-shadow: 2px 2px 2px black;
+    color: white;
+    margin: 10px;
+    padding: 10px 2px;
+    
+    background: none;
+    background-clip: border-box;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    border: 2px solid transparent;
+    border-radius: 5px;
+
+    box-shadow: 2px 2px 4px 0px black;
+    box-sizing: border-box;
+    
+    cursor: pointer;
+}
+
+.stack:last-child {
+    text-shadow: none;
+    border: 2px solid rgb(0,0,0);
+    background: none;
+    color: black;
+}
+
+.stack.selected {
+    width: 110px;
+    height: 165px;
+
+    border: 2px solid black;
+}
+
+.stack:hover {
+    border: 2px solid black;
+}
+
+
+#card-carousel {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 10px;
+
+    text-align: left;
+}
+
+.card {
+    display: inline-block;
+    width: 75px;
+    height: 112px;
+
+    text-align: center;
+    color: transparent;
+    margin: 10px;
+    padding: 10px 2px;
+    
+    background: none;
+    background-clip: border-box;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+
+
+    border: 2px solid transparent;
+    border-radius: 5px;
+
+    box-shadow: 2px 2px 4px 0px black;
+    box-sizing: border-box;
+    
+    cursor: pointer;
+}
+
+.card:last-child {
+    color: black;
+    background: none;
+    border: 2px solid rgb(0,0,0);
+}
+
+.card.selected {
+    width: 110px;
+    height: 165px;
+
+    border: 2px solid black;
+}
+
+.card:hover {
+    border: 2px solid black;
+}
+
+
+#modal-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    left: 0;
+    top: 0;
+
+    background: rgba(0,0,0,0.8);
+}
+
+#modal-container > div {
+    margin: 10% auto;
+    min-width: 320px;
+    max-width: 30%;
+    min-height: 20%;
+
+    padding: 1.2em 2em;
+
+    background: white;
+}
+
+#editor { 
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+
+    border: 1px solid black;
+}
+
+#editor * {
+    font : inherit !important;
+}

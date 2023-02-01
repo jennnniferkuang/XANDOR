@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Deck Editor</title>
+        <link href="../css/global.css" rel="stylesheet">
+        <link href="../css/index.css" rel="stylesheet">
+        <link href="../css/editor.css" rel="stylesheet">
+        <script
+			  src="https://code.jquery.com/jquery-3.5.1.min.js"
+			  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+              crossorigin="anonymous">
+        </script>
+        <script 
+            src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js" 
+            integrity="sha256-T5QdmsCQO5z8tBAXMrCZ4f3RX8wVdiA0Fu17FGnU1vU="
+            crossorigin="anonymous">
+        </script>
+        <script 
+            src="https://pagecdn.io/lib/ace/1.4.12/mode-javascript.min.js" 
+            crossorigin="anonymous">
+        </script>
+        
+        <script src="../game/info.js"></script>
+        <script src="../engine/util.js"></script>
+        <script src="../engine/graphics.js"></script>
+        <script src="../engine/spritemanager.js"></script>
+        <script src="../engine/deckmanager.js"></script>
+        <script src="../engine/random-words.js"></script>
+        <script src="../engine/network.js"></script>
+        <script src="../engine/game.js"></script>
+        <script src="../engine/networkbuffer.js"></script>
+        <script src="../engine/eventmessage.js"></script>
+        <script src="../engine/stack.js"></script>
+        <script src="../engine/effectareas.js"></script>
+        <script src="../game/gamelogic.js"></script>
+        <script src="./index.js"></script>
+
+    </head>
+    <body>
+        <div id="modal-container" hidden>
+            <div id="modal-add-stack" hidden>
+                <label>
+                    Stack Name:
+                    <input id="modal-text-field" type="text"/>
+                </label>
+                <br>
+                <label>
+                    Card Back:
+                    <input id="modal-file-field" type="file" accept="image/png, image/jpeg"/>
+                </label>
+                <br>
+                <label>
+                    Face Down?:
+                    <input id="modal-facedown-field" type="checkbox"/>
+                </label>
+                <br>
+                <input class="modal-cancel-btn" type="button" value="Cancel"/>
+                <input id="stack-confirm-btn" type="button" value="Confirm"/>
+            </div>
+            <div id="modal-edit-stack" hidden>
+                <h3>Delete</h3>
+                <img width="100px" id="image-edit-stack" src=""/>
+                <br>
+                <input class="modal-cancel-btn" type="button" value="Cancel"/>
+                <input id="stack-delete-btn" type="button" value="Delete"/>
+            </div>
+            <div id="modal-edit-card" hidden>
+                <h3>Edit Card</h3>
+                <img width="100px" id="image-edit-card" src=""/>
+                <br>
+                <label>
+                    Count in stack:
+                    <input id="modal-card-count" type="number"/>
+                </label>
+                <br>
+                <input class="modal-cancel-btn" type="button" value="Cancel"/>
+                <input id="card-confirm-btn" type="button" value="Confirm"/>
+                <input id="card-delete-btn" type="button" value="Delete"/>
+            </div>
+            <div id="modal-edit-code" hidden>
+                <div id="editor">// Insert custom deck dealing code here</div>
+                <input class="modal-cancel-btn" type="button" value="Close"/>
+            </div>
+        </div>
+
+        <div class="join-menu-container">
+            <div class="join-menu-content">
+                <div id="deck-menu">
+                    <h1 id="join-menu-title">Deck Menu</h1>
+                    <div>
+                        <span class="info">Already have a deck?</span>
+                        <label class="button">
+                            Upload a Deck
+                            <input onchange="uploadDeck(this)" id="deck-upload" type="file" accept=".json" hidden/>
+                        </label>
+                        <div id="join-failed-alert" class="error-box" hidden>
+                            <span id="join-failed-reason">unknown error</span>
+                        </div>
+                        <hr>
+                        <span class="info">Don't have a deck?</span>
+                        <input id="deck-create-btn" type="button" value="Create a Deck">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="game" hidden>
+            <canvas id="game-canvas" width=800 height=600></canvas>
+
+            <div id="deck-editor" hidden>
+                <h1 id="join-menu-title">Deck Editor</h1>
+
+                <input onchange="uploadNewBackground(this)" id="bg-upload" type="file" accept="image/png, image/jpeg" hidden/>
+                <input id="deck-bg-btn" type="button" value="Change Background">
+
+                <input id="deck-code-btn" type="button" value="Edit Code">
+                
+                <a id="downloadAnchorElem" download hidden></a>
+                <input id="deck-save-btn" type="button" value="Save Deck">
+                
+                <input id="deck-exit-btn" type="button" value="Exit">
+                
+                <hr>
+                
+                <span class="info">Stacks in this deck:</span>
+                
+                <div id="stack-carousel">
+                    <span id="add-stack" class="stack">
+                        +
+                    </span>
+                </div>
+                <div id="section-cards" hidden>
+                    
+                    <hr>
+                    <span class="info">Cards in this stack:</span>
+                    <div id="card-carousel">
+                        <label id="add-card">
+                            <input onchange="uploadNewCards(this)" multiple id="card-upload" type="file" accept="image/png, image/jpeg" hidden/>
+                            <span class="card">
+                                +
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button id="restart-button" hidden>Restart Game</button>
+        </div>
+    </body>
+    <footer>
+
+    </footer>
+</html>
