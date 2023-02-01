@@ -17,6 +17,16 @@ var Game = {
     otherMousePosSmooth: { x: 0, y: 0 } // READONLY. Other client's interpolated mouse position
 };
 
+//Sets the areas for the cards/decks to snap to
+var cardSlots = {
+  topHand: {y: 0},
+  bottomHand: {y: (GAME_INFO.gameHeight-50)},
+  pinkCards: {x: 100, y: (GAME_INFO.gameHeight/2)},
+  pinkDeck: {x: 0, y: (GAME_INFO.gameHeight/2)},
+  greenDeck: {x: GAME_INFO.gameWidth, y: 100},
+  yellowDeck: {x: (GAME_INFO.gameWidth + 50), y: 200}
+};
+
 // The actual game loop
 function frameLoop(timestamp) {
     requestAnimationFrame(frameLoop, Game.canvas); // Request the next frame
@@ -129,6 +139,10 @@ Game.init = () => {
         }
 
         Game.selfMousePos = Util.browserToCanvasCoords(Game.canvas, e.touches[0]);
+        /*
+        1. report mousePos
+        2. if within range of card slots, set card location to slot location
+        */
         
         Game.onTouchStart(e, Array.from(e.touches).map(x => Util.browserToCanvasCoords(Game.canvas, x)), touchedStacks);
         

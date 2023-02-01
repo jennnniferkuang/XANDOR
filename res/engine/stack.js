@@ -497,7 +497,8 @@ class CardStack {
         }
         else {
             this.isSelfDragging = false;
-            this.pos = { x: this.pos.x + 10, y: this.pos.y + 10 };
+            //this.pos = { x: this.pos.x, y: this.pos.y };
+            this.pos = { x: this.pos.x, y: cardSlots.topHand.y};
 
             NetworkBuffer.write("endedDrag", {
                 id: this.id,
